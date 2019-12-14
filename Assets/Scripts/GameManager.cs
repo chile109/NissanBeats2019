@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 enum SpeedLevel
@@ -56,6 +57,8 @@ public class GameManager : MonoBehaviour
     private Image m_speedBG;
     [SerializeField]
     private Text m_speedText;
+    [SerializeField]
+    private Text m_scoreText;
 
     [SerializeField]
     private Material m_roadMaterial;
@@ -75,6 +78,7 @@ public class GameManager : MonoBehaviour
             level = SpeedLevel.Dangerous;
         
         DisplaySpeed(level);
+        DisplayScore();
     }
 
     private void Update()
@@ -100,5 +104,16 @@ public class GameManager : MonoBehaviour
         {
             m_speedBG.color = Color.red;
         }
+    }
+    
+    private void DisplayScore()
+    {
+        m_scoreText.text = m_score.ToString();
+    }
+    
+    public void SetSpeed(int rpm)
+    {
+        m_score += (int)(Mathf.Abs(rpm) * Time.timeScale);
+        Speed += rpm;
     }
 }

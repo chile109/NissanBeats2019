@@ -42,18 +42,16 @@ public class ItemFactory : MonoBehaviour
 
     private void HandleOnAdd()
     {
-        GameManager.I.Speed += 1000;
+        GameManager.I.SetSpeed(1000);
     }
 
     private void HandleOnMinus()
     {
-        GameManager.I.Speed -= 1000;
-        Debug.Log("Minus Success");
+        GameManager.I.SetSpeed(-1000);
     }
 
     private void HandleOnFail()
     {
         GameManager.I.FaildCount += 1;
-        Debug.Log("Fail: " + GameManager.I.FaildCount);
     }
 }
