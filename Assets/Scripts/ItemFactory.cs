@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemFactory : MonoBehaviour
@@ -23,12 +22,36 @@ public class ItemFactory : MonoBehaviour
         yield return new WaitForSeconds(GetRandomTime());
 
         var item = Instantiate((Random.Range(0, 2) == 1) ? m_addPrefab : m_minusPrefab);
+        if (item.type == ItemType.Minus)
+        {
+            item.OnInvoke = HandleOnMinus;
+        }
+        else
+        {
+            item.OnInvoke = HandleOnAdd;
+        }
+        item.OnFail = HandleOnFail;
         m_spawnList[Random.Range(0, m_spawnList.Length)].GenerateItem(item);
         StartCoroutine(AssignSpawnTask());
     }
 
-    float GetRandomTime()
+    private float GetRandomTime()
     {
         return Random.Range(0.5f, 3.0f);
+    }
+
+    private void HandleOnAdd()
+    {
+        Debug.Log("Add Success");
+    }
+
+    private void HandleOnMinus()
+    {
+        Debug.Log("Minus Success");
+    }
+
+    private void HandleOnFail()
+    {
+        Debug.Log("Fail");
     }
 }

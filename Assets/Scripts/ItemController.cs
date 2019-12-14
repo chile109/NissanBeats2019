@@ -1,12 +1,20 @@
 ﻿using System;
 using UnityEngine;
 
+public enum ItemType
+{
+    Add, 
+    Minus,
+}
 public class ItemController : MonoBehaviour
 {
     [Range(40, 80)]
     public int Speed = 40;
-
     public bool isActive = false;
+    public ItemType type;
+    public Action OnInvoke = null;
+    public Action OnFail = null;
+   
     private Transform m_target;
 
     private void Start()
@@ -27,10 +35,17 @@ public class ItemController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "DeadZone")
+        switch (other.name)
         {
-            Destroy(this);
+            case "Player":
+                OnInvoke();
+                break;
+            case "DeadZone":
+                OnFail();
+                break;
         }
+
+        Destroy(this.gameObject);
         
     }
 }
