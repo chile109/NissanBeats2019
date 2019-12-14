@@ -9,15 +9,12 @@ public class InputController : MonoBehaviour
 
     public Transform Target;
 
-    private Vector3 m_pos;
-
     private void Start()
     {
-        m_pos = Target.position;
-        //Screen.lockCursor = true;
+        Screen.lockCursor = true;
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         float GetAxis = Input.GetAxis("Mouse X");
 
@@ -26,6 +23,7 @@ public class InputController : MonoBehaviour
         if (Target.position.x < -BoundaryDis && GetAxis < 0)
             return;
 
-        Target.Translate(GetAxis * MoveSpeed * Time.deltaTime, 0, 0);
+        var tranX = Mathf.Abs(GetAxis * MoveSpeed * Time.deltaTime + Target.position.x) > BoundaryDis ? 0 : GetAxis * MoveSpeed * Time.deltaTime;
+        Target.Translate(tranX, 0, 0);
     }
 }
