@@ -7,10 +7,7 @@ public class ItemFactory : MonoBehaviour
     private SpawnController[] m_spawnList;
 
     [SerializeField]
-    private ItemController m_addPrefab;
-
-    [SerializeField]
-    private ItemController m_minusPrefab;
+    private ItemController[] m_itemPrefabs;
 
     void Start()
     {
@@ -21,16 +18,19 @@ public class ItemFactory : MonoBehaviour
     {
         yield return new WaitForSeconds(GetRandomTime());
 
-        var item = Instantiate((Random.Range(0, 2) == 1) ? m_addPrefab : m_minusPrefab);
+        var item = Instantiate(m_itemPrefabs[(Random.Range(0, 3))]);
         if (item.type == ItemType.Minus)
         {
             item.OnInvoke = HandleOnMinus;
         }
-        else
+        else if(item.type == ItemType.Add)
         {
             item.OnInvoke = HandleOnAdd;
         }
-        item.OnFail = HandleOnFail;
+        else if(item.type == ItemType.Block)
+        {
+            item.OnFail = HandleOnFail;
+        }
         m_spawnList[Random.Range(0, m_spawnList.Length)].GenerateItem(item);
         StartCoroutine(AssignSpawnTask());
     }

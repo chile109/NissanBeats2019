@@ -5,6 +5,7 @@ public enum ItemType
 {
     Add, 
     Minus,
+    Block,
 }
 public class ItemController : MonoBehaviour
 {
@@ -39,9 +40,6 @@ public class ItemController : MonoBehaviour
         {
             case "Player":
                 OnInvoke();
-                break;
-            case "DeadZone":
-                OnFail();
                 break;
         }
 
