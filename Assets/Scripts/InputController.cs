@@ -9,14 +9,9 @@ public class InputController : MonoBehaviour
 
     public Transform Target;
 
-    private void Start()
-    {
-        Screen.lockCursor = true;
-    }
-
     void FixedUpdate()
     {
-        float GetAxis = Input.GetAxis("Mouse X");
+        float GetAxis = -Input.GetAxis("Mouse X");
 
         if (Target.position.x > BoundaryDis && GetAxis > 0)
             return;
