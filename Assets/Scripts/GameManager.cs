@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField]
-    private int m_speed = 60;
+    private int m_speed = 6000;
 
     public int Speed
     {
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     private void SetTimeScale()
     {
-        Time.timeScale = m_speed / 100f;
+        Time.timeScale = m_speed / 10000f;
         DisplaySpeed();
     }
 
