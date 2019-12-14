@@ -58,10 +58,9 @@ public class SoundVisual : MonoBehaviour
             GameObject cub = GameObject.CreatePrimitive(PrimitiveType.Cube) as GameObject;
 
             cub.transform.position = pos;
-            cub.transform.rotation = Quaternion.LookRotation(Vector3.back, pos);
+            cub.transform.rotation = Quaternion.LookRotation(Vector3.forward, pos);
             
             visualList[i] = cub.transform;
-            
         }
     }
 
@@ -112,7 +111,7 @@ public class SoundVisual : MonoBehaviour
                 visualScale[visualindex] = maxVisualScale;
             }
 
-            visualList[visualindex].localScale = Vector3.one + Vector3.up * visualScale[visualindex];
+            visualList[visualindex].localScale = new Vector3(0.3f, 0.3f, 0.3f) + Vector3.up * visualScale[visualindex];
             visualindex++;
         }
     }
