@@ -59,7 +59,7 @@ public class SoundVisual : MonoBehaviour
 
             cub.transform.position = pos;
             cub.transform.rotation = Quaternion.LookRotation(Vector3.forward, pos);
-            
+            cub.transform.SetParent(this.transform);
             visualList[i] = cub.transform;
         }
     }
@@ -111,7 +111,7 @@ public class SoundVisual : MonoBehaviour
                 visualScale[visualindex] = maxVisualScale;
             }
 
-            visualList[visualindex].localScale = new Vector3(0.3f, 0.3f, 0.3f) + Vector3.up * visualScale[visualindex];
+            visualList[visualindex].localScale = new Vector3(0.3f, 1f, 0.1f) + Vector3.up * visualScale[visualindex];
             visualindex++;
         }
     }
