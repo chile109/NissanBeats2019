@@ -2,6 +2,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+enum SpeedLevel
+{
+    Slow,
+    Fast,
+    Dangerous,
+}
 public class GameManager : MonoBehaviour
 {
     private static GameManager m_instance;
@@ -47,6 +53,8 @@ public class GameManager : MonoBehaviour
     private int m_score = 0;
 
     [SerializeField]
+    private Image m_speedBG;
+    [SerializeField]
     private Text m_speedText;
 
     [SerializeField]
@@ -60,7 +68,13 @@ public class GameManager : MonoBehaviour
     private void SetTimeScale()
     {
         Time.timeScale = m_speed / 10000f;
-        DisplaySpeed();
+        var level = SpeedLevel.Slow;
+        if (m_speed > 10000)
+            level = SpeedLevel.Fast;
+        if (m_speed > 20000)
+            level = SpeedLevel.Dangerous;
+        
+        DisplaySpeed(level);
     }
 
     private void Update()
@@ -74,8 +88,17 @@ public class GameManager : MonoBehaviour
         m_roadMaterial.SetTextureOffset("_MainTex", new Vector2(0, offset));
     }
 
-    private void DisplaySpeed()
+    private void DisplaySpeed(SpeedLevel level)
     {
         m_speedText.text = m_speed.ToString();
+        if (level == SpeedLevel.Fast)
+        {
+            m_speedBG.color = Color.yellow;
+        }
+        
+        else if (level == SpeedLevel.Dangerous)
+        {
+            m_speedBG.color = Color.red;
+        }
     }
 }
