@@ -14,8 +14,7 @@ public class ItemController : MonoBehaviour
     public bool isActive = false;
     public ItemType type;
     public Action OnInvoke = null;
-    public Action OnFail = null;
-   
+
     private Transform m_target;
 
     private void Start()
@@ -30,7 +29,7 @@ public class ItemController : MonoBehaviour
 
     void Update()
     {
-        if (isActive)
+        if (isActive && !GameManager.I.IsOver)
             m_target.Translate(0, 0, Time.deltaTime * Speed);
     }
 
@@ -39,7 +38,7 @@ public class ItemController : MonoBehaviour
         switch (other.name)
         {
             case "Player":
-                OnInvoke();
+                OnInvoke?.Invoke();
                 break;
         }
 

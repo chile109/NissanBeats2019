@@ -11,6 +11,9 @@ public class InputController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(GameManager.I.IsOver)
+            return;
+        
         float GetAxis = -Input.GetAxis("Mouse X");
 
         if (Target.position.x > BoundaryDis && GetAxis > 0)

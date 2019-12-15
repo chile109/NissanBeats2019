@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ItemFactory : MonoBehaviour
 {
@@ -29,7 +31,7 @@ public class ItemFactory : MonoBehaviour
         }
         else if(item.type == ItemType.Block)
         {
-            item.OnFail = HandleOnFail;
+            item.OnInvoke = HandleOnFail;
         }
         m_spawnList[Random.Range(0, m_spawnList.Length)].GenerateItem(item);
         StartCoroutine(AssignSpawnTask());
@@ -52,6 +54,7 @@ public class ItemFactory : MonoBehaviour
 
     private void HandleOnFail()
     {
-        GameManager.I.FaildCount += 1;
+        StopAllCoroutines();
+        GameManager.I.DisplayLose(true);
     }
 }

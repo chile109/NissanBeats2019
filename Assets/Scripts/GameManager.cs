@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 enum SpeedLevel
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public int FaildCount = 0;
+    public bool IsOver = false;
 
     [SerializeField]
     private int m_score = 0;
@@ -59,6 +59,11 @@ public class GameManager : MonoBehaviour
     private Text m_speedText;
     [SerializeField]
     private Text m_scoreText;
+    
+    [SerializeField]
+    private GameObject Win;
+    [SerializeField]
+    private GameObject Lose;
 
     [SerializeField]
     private Material m_roadMaterial;
@@ -119,6 +124,28 @@ public class GameManager : MonoBehaviour
     public void SetSpeed(int rpm)
     {
         m_score += (int)(Mathf.Abs(rpm) * Time.timeScale);
+        if (m_score > 100000)
+            DisplayWin(true);
         Speed += rpm;
+    }
+
+    public void ResetStage()
+    {
+        Scene scene = SceneManager.GetActiveScene(); 
+        SceneManager.LoadScene(scene.name);
+        IsOver = false;
+    }
+    
+    public void DisplayWin(bool open)
+    {
+        IsOver = true;
+        Win.SetActive(open);
+    }
+    
+    public void DisplayLose(bool open)
+    {
+        Time.timeScale = 0.3f;
+        IsOver = true;
+        Lose.SetActive(open);
     }
 }

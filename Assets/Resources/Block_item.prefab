@@ -116,7 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 60
   isActive: 0
-  type: 1
+  type: 2
 --- !u!65 &8010011219196854661
 BoxCollider:
   m_ObjectHideFlags: 0
