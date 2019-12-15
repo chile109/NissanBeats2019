@@ -10,7 +10,13 @@ public class ItemFactory : MonoBehaviour
 
     [SerializeField]
     private ItemController[] m_itemPrefabs;
-
+    
+    [SerializeField]
+    private AudioSource carRush;
+    
+    [SerializeField]
+    private AudioSource carBrake;
+    
     void Start()
     {
         StartCoroutine(AssignSpawnTask());
@@ -45,11 +51,13 @@ public class ItemFactory : MonoBehaviour
     private void HandleOnAdd()
     {
         GameManager.I.SetSpeed(2000);
+        carRush.Play();
     }
 
     private void HandleOnMinus()
     {
         GameManager.I.SetSpeed(-1000);
+        carBrake.Play();
     }
 
     private void HandleOnFail()

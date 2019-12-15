@@ -74,6 +74,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private AudioSource music;
+    
+    
 
     private void Start()
     {
