@@ -37,12 +37,12 @@ public class ItemFactory : MonoBehaviour
 
     private float GetRandomTime()
     {
-        return Random.Range(0.5f, 3.0f);
+        return Random.Range(0.5f, 2.0f);
     }
 
     private void HandleOnAdd()
     {
-        GameManager.I.SetSpeed(1000);
+        GameManager.I.SetSpeed(2000);
     }
 
     private void HandleOnMinus()
