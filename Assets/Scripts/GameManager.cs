@@ -95,14 +95,22 @@ public class GameManager : MonoBehaviour
     private void DisplaySpeed(SpeedLevel level)
     {
         m_speedText.text = m_speed.ToString();
+        if (level == SpeedLevel.Slow)
+        {
+            m_speedBG.color = Color.white;
+            m_roadMaterial.color= Color.white;
+        }
+        
         if (level == SpeedLevel.Fast)
         {
             m_speedBG.color = Color.yellow;
+            m_roadMaterial.color= Color.yellow;
         }
         
         else if (level == SpeedLevel.Dangerous)
         {
             m_speedBG.color = Color.red;
+            m_roadMaterial.color= Color.red;
         }
     }
     

@@ -54,10 +54,10 @@ public class SoundVisual : MonoBehaviour
             float x = center.x + Mathf.Cos(ang) * radius;
             float y = center.y + Mathf.Sin(ang) * radius;
             
-            Vector3 pos  = new Vector3(x, y ,0);
+            Vector3 pos  = new Vector3(x, y ,-10);
             GameObject cub = GameObject.CreatePrimitive(PrimitiveType.Cube) as GameObject;
 
-            cub.transform.position = pos;
+            cub.transform.localPosition = pos;
             cub.transform.rotation = Quaternion.LookRotation(Vector3.forward, pos);
             cub.transform.SetParent(this.transform);
             visualList[i] = cub.transform;
