@@ -2,6 +2,9 @@
 
 public class SoundVisual : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject pillarPrefab;
+    
     private const int SAMPLE_SIZE = 1024;
     public float rmsV;
     public float dbV;
@@ -52,7 +55,7 @@ public class SoundVisual : MonoBehaviour
             float y = center.y + Mathf.Sin(ang) * radius;
             
             Vector3 pos  = new Vector3(x, y ,-10);
-            GameObject cub = GameObject.CreatePrimitive(PrimitiveType.Cube) as GameObject;
+            GameObject cub = Instantiate(pillarPrefab) as GameObject;
 
             cub.transform.localPosition = pos;
             cub.transform.rotation = Quaternion.LookRotation(Vector3.forward, pos);
