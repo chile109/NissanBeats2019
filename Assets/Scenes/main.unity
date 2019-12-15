@@ -1665,6 +1665,7 @@ MonoBehaviour:
   Win: {fileID: 88356404}
   Lose: {fileID: 1793508240}
   m_roadMaterial: {fileID: 2100000, guid: 1ad2386e2c6f34d4bb304c9fd5292d51, type: 2}
+  music: {fileID: 1050082954}
 --- !u!1 &822751374
 GameObject:
   m_ObjectHideFlags: 0
@@ -2534,11 +2535,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rmsV: 0
   dbV: 0
-  pitchV: 0
-  maxVisualScale: 1.5
+  maxVisualScale: 1.2
   visualModifier: 80
   smoothSpeed: 10
-  keepPersontage: 0.5
+  keepPersontage: 0.1
   music: {fileID: 1050082954}
   amnVisual: 100
 --- !u!4 &1050082956
