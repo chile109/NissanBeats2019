@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ItemFactory : MonoBehaviour
 {
@@ -8,7 +10,13 @@ public class ItemFactory : MonoBehaviour
 
     [SerializeField]
     private ItemController[] m_itemPrefabs;
-
+    
+    [SerializeField]
+    private AudioSource carRush;
+    
+    [SerializeField]
+    private AudioSource carBrake;
+    
     void Start()
     {
         StartCoroutine(AssignSpawnTask());
@@ -29,7 +37,7 @@ public class ItemFactory : MonoBehaviour
         }
         else if(item.type == ItemType.Block)
         {
-            item.OnFail = HandleOnFail;
+            item.OnInvoke = HandleOnFail;
         }
         m_spawnList[Random.Range(0, m_spawnList.Length)].GenerateItem(item);
         StartCoroutine(AssignSpawnTask());
@@ -43,15 +51,18 @@ public class ItemFactory : MonoBehaviour
     private void HandleOnAdd()
     {
         GameManager.I.SetSpeed(2000);
+        carRush.Play();
     }
 
     private void HandleOnMinus()
     {
         GameManager.I.SetSpeed(-1000);
+        carBrake.Play();
     }
 
     private void HandleOnFail()
     {
-        GameManager.I.FaildCount += 1;
+        StopAllCoroutines();
+        GameManager.I.DisplayLose(true);
     }
 }

@@ -5,7 +5,6 @@ public class SoundVisual : MonoBehaviour
     private const int SAMPLE_SIZE = 1024;
     public float rmsV;
     public float dbV;
-    public float pitchV;
     public float maxVisualScale = 25.0f;
     public float visualModifier = 50.0f;
     public float smoothSpeed = 10f;
@@ -13,7 +12,6 @@ public class SoundVisual : MonoBehaviour
     public AudioSource music;
     private float[] samples = new float[SAMPLE_SIZE];
     private float[] spectrums = new float[SAMPLE_SIZE];
-    private float sampleRate;
 
     private Transform[] visualList;
     private float[] visualScale;
@@ -21,7 +19,6 @@ public class SoundVisual : MonoBehaviour
 
     private void Start()
     {
-        sampleRate = AudioSettings.outputSampleRate;
         //SpawnLine();
         SpawnCircle();
     }
