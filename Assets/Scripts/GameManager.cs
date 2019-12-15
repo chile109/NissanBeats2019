@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -74,8 +73,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private AudioSource music;
-    
-    
+
 
     private void Start()
     {
@@ -98,6 +96,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+            m_score += 10000;
         DisplayRoad();
     }
 
