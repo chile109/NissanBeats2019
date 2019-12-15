@@ -12355,10 +12355,10 @@ MonoBehaviour:
   - {fileID: 923143882}
   - {fileID: 2068468440}
   - {fileID: 1825975438}
-  m_addPrefab: {fileID: 4088968705567142168, guid: bca1dd8c6cea54d04b13c6744a5b13de,
-    type: 3}
-  m_minusPrefab: {fileID: 4573928389458700464, guid: cb733f305ea20410194cafdcac659acd,
-    type: 3}
+  m_itemPrefabs:
+  - {fileID: 4088968705567142168, guid: bca1dd8c6cea54d04b13c6744a5b13de, type: 3}
+  - {fileID: 4573928389458700464, guid: cb733f305ea20410194cafdcac659acd, type: 3}
+  - {fileID: 4573928389458700464, guid: f5bb09ba299934405a6f0ce833e88ada, type: 3}
 --- !u!4 &1870782640
 Transform:
   m_ObjectHideFlags: 0
